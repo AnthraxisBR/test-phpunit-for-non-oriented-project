@@ -3,13 +3,12 @@
 include 'vendor/autoload.php';
 include 'src/funcaoComDependencias.php';
 
-
 class CoamDependenciasTest extends PHPUnit_Framework_TestCase {
     
      public function testNumber()
     {
-        $n = (int) 5;
-        $this->assertInternalType("int", dobrar_valor($n));
+        $n = dobrar_valor(5);
+        $this->assertInternalType("int", $n);
         return $n;
     }
 
@@ -18,17 +17,16 @@ class CoamDependenciasTest extends PHPUnit_Framework_TestCase {
      */
     public function testEqualiyng($n)
     {        
-        $this->assertNotEmpty($n);
+        $this->assertSame(25,$n);
         return $n;
     }
 
     /**
      * @depends testEqualiyng
      */
-    public function testLess($n)
+    public function testLessThan50($n)
     {
-        $this->assertLessThan(10, $n);
+        $this->assertLessThan(50, $n);
         $this->assertNotEmpty($n);
-        return $n;
     }
 }
